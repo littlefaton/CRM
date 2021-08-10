@@ -7,10 +7,10 @@ import { Box, Stack, AppBar, Toolbar, IconButton } from '@material-ui/core';
 // components
 import { MHidden } from '../../components/@material-extend';
 //
-import Searchbar from './Searchbar';
+// import Searchbar from './Searchbar';
 import AccountPopover from './AccountPopover';
 import LanguagePopover from './LanguagePopover';
-import NotificationsPopover from './NotificationsPopover';
+// import NotificationsPopover from './NotificationsPopover';
 
 // ----------------------------------------------------------------------
 
@@ -32,7 +32,7 @@ const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
   minHeight: APPBAR_MOBILE,
   [theme.breakpoints.up('lg')]: {
     minHeight: APPBAR_DESKTOP,
-    padding: theme.spacing(0, 5)
+    padding: theme.spacing(0, 180),
   }
 }));
 
@@ -52,12 +52,12 @@ export default function DashboardNavbar({ onOpenSidebar }) {
           </IconButton>
         </MHidden>
 
-        <Searchbar />
-        <Box sx={{ flexGrow: 1 }} />
+        {/* <Searchbar />
+        <Box sx={{ flexGrow: 1 }} /> */}
 
         <Stack direction="row" alignItems="center" spacing={{ xs: 0.5, sm: 1.5 }}>
           <LanguagePopover />
-          <NotificationsPopover />
+          {/* <NotificationsPopover /> */}
           <AccountPopover />
         </Stack>
       </ToolbarStyle>
