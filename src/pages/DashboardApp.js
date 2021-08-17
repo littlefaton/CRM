@@ -1,5 +1,6 @@
 // material
-import { Box, Grid, Container, Typography } from '@material-ui/core';
+import { Box, Grid, Container, Typography, Avatar, Stack } from '@material-ui/core';
+import { Contacts } from '@material-ui/icons';
 // components
 import Page from '../components/Page';
 import {
@@ -17,15 +18,22 @@ import {
   AppConversionRates
 } from '../components/_dashboard/app';
 
+import USERINFO from '../_mocks_/userInfo.json';
+
 // ----------------------------------------------------------------------
 
 export default function DashboardApp() {
   return (
     <Page title="Overview">
       <Container maxWidth="xl">
-        <Box sx={{ pb: 5 }}>
-          <Typography variant="h4">Hi, Welcome back</Typography>
-        </Box>
+      {USERINFO.map(props => {
+        return (
+        <Stack direction="row" spacing={2} sx={{ pb: 5 }}>
+          <Avatar alt={props.name} src={props.avatarUrl} />
+          <Typography variant="h4">{props.name}</Typography>
+        </Stack>
+        );
+      })}
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={3}>
             <AppWeeklySales />
