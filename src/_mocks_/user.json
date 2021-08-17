@@ -1,0 +1,57 @@
+[
+    {
+        "id": 1,
+        "avatarUrl": "/static/mock-images/avatars/avatar_2.jpg",
+        "userID": 1,
+        "name": "Amber Leffler",
+        "age": "26",
+        "balance": "HK$293,485",
+        "lastContacted": "27/06/2021",
+        "status": "contacted"
+    },
+
+    {
+        "id": 2,
+        "avatarUrl": "/static/mock-images/avatars/avatar_3.jpg",
+        "userID": 2,
+        "name": "Andrea Osinski",
+        "age": "47",
+        "balance": "HK$164,345",
+        "lastContacted": "29/07/2021",
+        "status": "pending"
+    },
+
+    {
+        "id": 3,
+        "avatarUrl": "/static/mock-images/avatars/avatar_4.jpg",
+        "userID": 3,
+        "name": "Anna Casper",
+        "age": "35",
+        "balance": "HK$3,235,345",
+        "lastContacted": "11/12/2020",
+        "status": "contacted"
+    },
+
+    {
+        "id": 4,
+        "avatarUrl": "/static/mock-images/avatars/avatar_5.jpg",
+        "userID": 4,
+        "name": "Becky Reilly",
+        "age": "87",
+        "balance": "HK$25, 521",
+        "lastContacted": "06/04/2021",
+        "status": "contacted"
+    },
+  
+    {
+        "id": 5,
+        "avatarUrl": "/static/mock-images/avatars/avatar_6.jpg",
+        "userID": 5,
+        "name": "Bobbie McLaughlin",
+        "age": "39",
+        "balance": "HK$745,253",
+        "lastContacted": "13/02/2021",
+        "status": "pending"
+    }
+
+  ]
