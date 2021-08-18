@@ -6,6 +6,8 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Collapse from "@material-ui/core/Collapse";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { Link } from 'react-router-dom';
+
 
 import { menu } from "./menu";
 import { hasChildren } from "./utils";
@@ -20,8 +22,16 @@ const MenuItem = ({ item }) => {
 };
 
 const SingleLevel = ({ item }) => {
+  const to = item.to;
+  const CustomLink = React.useMemo(
+    () =>
+      React.forwardRef((linkProps, ref) => (
+        <Link ref={ref} to={to} {...linkProps} />
+      )),
+    [to],
+  );
   return (
-    <ListItem button>
+    <ListItem button component={CustomLink}>
       <ListItemIcon>{item.icon}</ListItemIcon>
       <ListItemText primary={item.title} />
     </ListItem>
