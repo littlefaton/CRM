@@ -7,7 +7,7 @@ import {
   AppTasks,
   AppFinancialInfo,
   AppBugReports,
-  AppItemOrders,
+  AppCash,
   AppNewsUpdate,
   AppClientInfo,
   AppOrderTimeline,
@@ -42,7 +42,7 @@ export default function DashboardApp() {
             <AppFinancialInfo />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <AppItemOrders />
+            <AppCash />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
             <AppBugReports />
