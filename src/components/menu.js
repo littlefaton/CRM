@@ -13,28 +13,34 @@ export const menu = [
   {
     icon: <ListAltIcon />,
     title: "Customer List",
-    items: []
+    items: [],
+    to: "/dashboard/user"
   },
   {
     icon: <DashboardIcon />,
     title: "Overview",
-    items: []
+    items: [],
+    to: "/app"
   },
   {
     icon: <AssignmentIndIcon />,
     title: "Profile",
     items: [
         {
-            title: "Customer Info"
+            title: "Customer Info",
+            to: "/dashboard",
         },
         {
-            title: "Customer Finanacial Info"
+            title: "Customer Finanacial Info",
+            to: "/dashboard",
         },
         {
-            title: "CPRQ"
+            title: "CPRQ",
+            to: "/dashboard",
         },
         {
-            title: "Tax Info"
+            title: "Tax Info",
+            to: "/dashboard",
         },
     ]
   },
@@ -43,10 +49,12 @@ export const menu = [
     title: "Portfolio",
     items: [
         {
-            title: "Cash"
+            title: "Cash",
+            to: "/dashboard",
         },
         {
-            title: "Customer Holding"
+            title: "Customer Holding",
+            to: "/dashboard",
         },
     ]
   },
@@ -55,7 +63,8 @@ export const menu = [
     title: "Cash Movement",
     items: [
         {
-            title: "Deposit & Withdraw"
+            title: "Deposit & Withdraw",
+            to: "/dashboard",
         },
     ]
   },
@@ -64,13 +73,16 @@ export const menu = [
     title: "Stock Movement",
     items: [
         {
-            title: "Trade"
+            title: "Trade",
+            to: "/dashboard",
         },
         {
-            title: "IPO Application"
+            title: "IPO Application",
+            to: "/dashboard",
         },
         {
-            title: "Stock Transfer"
+            title: "Stock Transfer",
+            to: "/dashboard",
         },
     ]
   },
@@ -79,7 +91,8 @@ export const menu = [
     title: "Credit Control",
     items: [
         {
-            title: "Credit Limit Application"
+            title: "Credit Limit Application",
+            to: "/dashboard",
         },
     ]
   },
@@ -88,20 +101,24 @@ export const menu = [
     title: "Customer Enquiry",
     items: [
         {
-            title: "System Message"
+            title: "System Message",
+            to: "/dashboard",
         },
         {
-            title: "Order Message"
+            title: "Order Message",
+            to: "/dashboard",
         },
         {
-            title: "Inbox Message"
+            title: "Inbox Message",
+            to: "/dashboard",
         },
     ]
   },
   {
     icon: <HistoryIcon />,
     title: "Logon Record",
-    items: []
+    items: [],
+    to: "test"
   },
 
  ];
