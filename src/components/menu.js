@@ -26,23 +26,24 @@ export const menu = [
     icon: <AssignmentIndIcon />,
     title: "Profile",
     items: [
-        {
-            title: "Customer Info",
-            to: "/dashboard",
-        },
-        {
-            title: "Customer Finanacial Info",
-            to: "/dashboard",
-        },
-        {
-            title: "CPRQ",
-            to: "/dashboard",
-        },
-        {
-            title: "Tax Info",
-            to: "/dashboard",
-        },
-    ]
+        // {
+        //     title: "Customer Info",
+        //     to: "/dashboard",
+        // },
+        // {
+        //     title: "Customer Finanacial Info",
+        //     to: "/dashboard",
+        // },
+        // {
+        //     title: "CPRQ",
+        //     to: "/dashboard",
+        // },
+        // {
+        //     title: "Tax Info",
+        //     to: "/dashboard",
+        // },
+    ],
+    to:"/dashboard/app"
   },
   {
     icon: <AttachMoneyIcon />,
