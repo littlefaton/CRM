@@ -2,7 +2,7 @@ import { merge } from 'lodash';
 import ReactApexChart from 'react-apexcharts';
 // material
 import { useTheme, styled } from '@material-ui/core/styles';
-import { Card, CardHeader, Button, Stack, Typography } from '@material-ui/core';
+import { Card, Button, Stack, Typography } from '@material-ui/core';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 // utils
 import { fNumber } from '../../../utils/formatNumber';
@@ -69,7 +69,6 @@ export default function AppCash() {
   return (
     <Card>
       <Stack paddingTop={2} direction="row" spacing={2}>
-        {/* <CardHeader title="Cash" /> */}
         <Typography variant="h5" align="left" paddingLeft={2}>Cash</Typography>
         <Button color="info" endIcon={<ArrowRightIcon />}>View More</Button>
       </Stack>
