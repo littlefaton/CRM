@@ -9,7 +9,7 @@ import {
   AppBugReports,
   AppItemOrders,
   AppNewsUpdate,
-  AppWeeklySales,
+  AppClientInfo,
   AppOrderTimeline,
   AppCurrentVisits,
   AppWebsiteVisits,
@@ -36,7 +36,7 @@ export default function DashboardApp() {
       })}
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={3}>
-            <AppWeeklySales />
+            <AppClientInfo />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
             <AppNewUsers />

@@ -2,7 +2,15 @@
  {
      "id": 1,
      "avatarUrl": "/static/mock-images/avatars/avatar_2.jpg",
-     "name": "Amber Leffler"
+     "name": "Amber Leffler",
+     "gender": "Female",
+     "age": 26,
+     "nationality": "American",
+     "contact":94837261,
+     "address1": "Room B, 18/F,",
+     "address2":"Example Building,", 
+     "address3": "35 Example Street," ,
+     "address4": "Example District, H.K."
  }
 
   ]
