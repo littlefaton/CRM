@@ -1,0 +1,19 @@
+[
+    {
+        "ccy": "USD",
+        "amount": "234,203",
+        "completion": "29/06/2021"
+    },
+
+    {
+        "ccy": "HKD",
+        "amount": "43,142",
+        "completion": "01/05/2021"
+    },
+
+    {
+        "ccy": "USD",
+        "amount": "7313",
+        "completion": "11/01/2021"
+    }
+]
