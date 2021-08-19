@@ -20,7 +20,7 @@ export const menu = [
     icon: <DashboardIcon />,
     title: "Overview",
     items: [],
-    to: "/app"
+    to: "/dashboard/app"
   },
   {
     icon: <AssignmentIndIcon />,
