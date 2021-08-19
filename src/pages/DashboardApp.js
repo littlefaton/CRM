@@ -5,7 +5,7 @@ import { Contacts } from '@material-ui/icons';
 import Page from '../components/Page';
 import {
   AppTasks,
-  AppNewUsers,
+  AppFinancialInfo,
   AppBugReports,
   AppItemOrders,
   AppNewsUpdate,
@@ -39,7 +39,7 @@ export default function DashboardApp() {
             <AppClientInfo />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <AppNewUsers />
+            <AppFinancialInfo />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
             <AppItemOrders />
