@@ -5,7 +5,10 @@ import {
   Table,
   TableRow,
   TableCell,
-  Typography} from '@material-ui/core';
+  Typography,
+  Button,
+  Stack} from '@material-ui/core';
+  import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 // mocks
 import AppUserInfo from 'src/_mocks_/AppUserInfo.json';
 
@@ -25,8 +28,10 @@ const RootStyle = styled(Card)(({ theme }) => ({
 export default function AppClientInfo() {
   return (
     <RootStyle>
-
-      <Typography variant="h5" align="left" paddingLeft={2}>Client Info</Typography>
+      <Stack direction="row" spacing={2}>
+        <Typography variant="h5" align="left" paddingLeft={2}>Client Info</Typography>
+        <Button color="info" endIcon={<ArrowRightIcon />}>View More</Button>
+      </Stack>
       {AppUserInfo.map((item, i) => (
       <Table size="small" padding="checkbox" key="i" >
     <TableRow>
