@@ -1,7 +1,8 @@
 import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
-import { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { useState, useMemo } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 // material
 import {
   Card,
@@ -137,6 +138,8 @@ export default function User() {
 
                       return (
                         <TableRow
+                          component={Link}
+                          to={`/dashboard/app/${id}`}
                           hover
                           key={id}
                           tabIndex={-1}
