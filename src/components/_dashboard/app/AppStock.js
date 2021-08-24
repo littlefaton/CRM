@@ -12,7 +12,7 @@ import {
   Stack} from '@material-ui/core';
   import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 // mocks
-import CashMove from 'src/_mocks_/AppCashMove.json';
+import Stock from 'src/_mocks_/AppStock.json';
 
 // ----------------------------------------------------------------------
 
@@ -43,7 +43,7 @@ export default function AppCashMove() {
           </TableRow>
         </TableHead>
         <TableBody>
-        {CashMove.map((item, i) => (
+        {Stock.map((item, i) => (
     <TableRow>
         <TableCell align="left">{item.ccy}</TableCell>
         <TableCell align="right">{item.amount}</TableCell>
