@@ -1,0 +1,26 @@
+[
+    {
+        "market": "USD",
+        "stockNo": "02239",
+        "buySell": "buy",
+        "amount": "142,394",
+        "status": "completed"
+    },
+
+    {
+        "market": "HKD",
+        "stockNo": "02364",
+        "buySell": "sell",
+        "amount": "23,545",
+        "status": "completed"
+    },
+
+    {
+        "market": "USD",
+        "stockNo": "02082",
+        "buySell": "buy",
+        "amount": "16,435",
+        "status": "pending"
+    }
+
+]

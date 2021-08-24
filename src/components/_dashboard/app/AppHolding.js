@@ -2,11 +2,12 @@ import { merge } from 'lodash';
 import ReactApexChart from 'react-apexcharts';
 // material
 import { useTheme, styled } from '@material-ui/core/styles';
-import { Card, CardHeader } from '@material-ui/core';
+import { Card, Stack, Typography, Button } from '@material-ui/core';
 // utils
 import { fNumber } from '../../../utils/formatNumber';
 //
 import { BaseOptionChart } from '../../charts';
+import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
 // ----------------------------------------------------------------------
 
@@ -43,7 +44,7 @@ export default function AppCurrentVisits() {
       theme.palette.warning.main,
       theme.palette.error.main
     ],
-    labels: ['America', 'Asia', 'Europe', 'Africa'],
+    labels: ['HKG', 'USA', 'SZA', 'Others'],
     stroke: { colors: [theme.palette.background.paper] },
     legend: { floating: true, horizontalAlign: 'center' },
     dataLabels: { enabled: true, dropShadow: { enabled: false } },
@@ -63,7 +64,10 @@ export default function AppCurrentVisits() {
 
   return (
     <Card>
-      <CardHeader title="Current Visits" />
+      <Stack paddingTop={2} direction="row" spacing={2}>
+        <Typography variant="h5" align="left" paddingLeft={2}>Customer Holding</Typography>
+        <Button color="info" endIcon={<ArrowRightIcon />}>View More</Button>
+      </Stack>
       <ChartWrapperStyle dir="ltr">
         <ReactApexChart type="pie" series={CHART_DATA} options={chartOptions} height={280} />
       </ChartWrapperStyle>
