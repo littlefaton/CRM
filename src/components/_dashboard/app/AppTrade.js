@@ -1,5 +1,6 @@
 // material
 import { styled } from '@material-ui/core/styles';
+import { sentenceCase } from 'change-case';
 import {
   Card,
   Table,
@@ -9,10 +10,11 @@ import {
   TableCell,
   Typography,
   Button,
-  Stack} from '@material-ui/core';
+  Stack,} from '@material-ui/core';
+  import Label from 'src/components/Label';
   import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 // mocks
-import CashMove from 'src/_mocks_/AppCashMove.json';
+import Trade from 'src/_mocks_/AppTrade.json';
 
 // ----------------------------------------------------------------------
 
@@ -37,17 +39,26 @@ export default function AppCashMove() {
       <Table size="small" padding="normal" key="i" >
         <TableHead>
           <TableRow>
-            <TableCell>CCY</TableCell>
+            <TableCell>Market</TableCell>
+            <TableCell align="right">Stock Number</TableCell>
+            <TableCell align="right">Buy/Sell</TableCell>
             <TableCell align="right">Amount</TableCell>
-            <TableCell align="right">Completion Date</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-        {CashMove.map((item, i) => (
+        {Trade.map((item, i) => (
     <TableRow>
-        <TableCell align="left">{item.ccy}</TableCell>
+        <TableCell align="left">{item.market}</TableCell>
+        <TableCell align="right">{item.stockNo}</TableCell>
+        <TableCell align="right">
+            <Label
+              variant="ghost"
+              color={(item.buySell === 'sell' && 'warning') || 'info'}
+            >
+            {sentenceCase(item.buySell)}
+            </Label>
+        </TableCell>
         <TableCell align="right">{item.amount}</TableCell>
-        <TableCell align="right">{item.completion}</TableCell>
     </TableRow>
         ))}
     </TableBody>

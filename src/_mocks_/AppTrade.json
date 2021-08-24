@@ -1,0 +1,25 @@
+[
+    {
+        "market": "HKD",
+        "stockNo": "02239",
+        "buySell": "sell",
+        "amount": "432,024"
+
+    },
+
+    {
+        "market": "HKD",
+        "stockNo": "02364",
+        "buySell": "buy",
+        "amount": "6,824"
+
+    },
+
+    {
+        "market": "USD",
+        "stockNo": "02082",
+        "buySell": "buy",
+        "amount": "25,164"
+    }
+
+]

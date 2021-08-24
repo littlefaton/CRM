@@ -15,7 +15,6 @@ import {
   import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 // mocks
 import Order from 'src/_mocks_/AppOrder.json';
-import { orderBy } from 'lodash';
 
 // ----------------------------------------------------------------------
 
