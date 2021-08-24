@@ -12,7 +12,7 @@ import {
   Stack} from '@material-ui/core';
   import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 // mocks
-import CashMove from 'src/_mocks_/AppCashMove.json';
+import IPO from 'src/_mocks_/AppIPO.json';
 
 // ----------------------------------------------------------------------
 
@@ -37,17 +37,19 @@ export default function AppCashMove() {
       <Table size="small" padding="normal" key="i" >
         <TableHead>
           <TableRow>
-            <TableCell>CCY</TableCell>
-            <TableCell align="right">Amount</TableCell>
-            <TableCell align="right">Completion Date</TableCell>
+            <TableCell>Market</TableCell>
+            <TableCell align="right">Stock Number</TableCell>
+            <TableCell align="right">Allocated Qty</TableCell>
+            <TableCell align="right">Price</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-        {CashMove.map((item, i) => (
+        {IPO.map((item, i) => (
     <TableRow>
-        <TableCell align="left">{item.ccy}</TableCell>
-        <TableCell align="right">{item.amount}</TableCell>
-        <TableCell align="right">{item.completion}</TableCell>
+        <TableCell align="left">{item.market}</TableCell>
+        <TableCell align="right">{item.stockNo}</TableCell>
+        <TableCell align="right" style={{color: 'blue'}}>{item.qty}</TableCell>
+        <TableCell align="right" style={{color: 'darkkhaki'}}>{item.price}</TableCell>
     </TableRow>
         ))}
     </TableBody>
