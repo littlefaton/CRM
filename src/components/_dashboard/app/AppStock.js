@@ -47,7 +47,7 @@ export default function AppCashMove() {
     <TableRow>
         <TableCell align="left">{item.ccy}</TableCell>
         <TableCell align="right">{item.amount}</TableCell>
-        <TableCell align="right">{item.completion}</TableCell>
+        <TableCell align="right" style={{color: 'green'}}>{item.completion}</TableCell>
     </TableRow>
         ))}
     </TableBody>
