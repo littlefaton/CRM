@@ -31,7 +31,7 @@ export default function AppCashMove() {
   return (
     <RootStyle>
       <Stack direction="row" spacing={2}>
-        <Typography variant="h5" align="left" paddingLeft={2}>Credit Limit Application</Typography>
+        <Typography variant="h5" align="left" paddingLeft={2}>Credit Limit App</Typography>
         <Button color="info" endIcon={<ArrowRightIcon />}>View More</Button>
       </Stack>
       <Table size="small" padding="normal" key="i" >

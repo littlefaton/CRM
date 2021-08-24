@@ -38,9 +38,9 @@ export default function AppCashMove() {
         <TableHead>
           <TableRow>
             <TableCell>Market</TableCell>
-            <TableCell align="right">Stock Number</TableCell>
-            <TableCell align="right">Allocated Qty</TableCell>
-            <TableCell align="right">Price</TableCell>
+            <TableCell align="right">StockNo.</TableCell>
+            <TableCell align="right">Qty</TableCell>
+            <TableCell align="left">Price</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -49,7 +49,7 @@ export default function AppCashMove() {
         <TableCell align="left">{item.market}</TableCell>
         <TableCell align="right">{item.stockNo}</TableCell>
         <TableCell align="right" style={{color: 'blue'}}>{item.qty}</TableCell>
-        <TableCell align="right" style={{color: 'darkkhaki'}}>{item.price}</TableCell>
+        <TableCell align="left" style={{color: 'darkkhaki'}}>{item.price}</TableCell>
     </TableRow>
         ))}
     </TableBody>

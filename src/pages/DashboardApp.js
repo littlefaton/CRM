@@ -51,43 +51,30 @@ export default function DashboardApp() {
             <AppCashMove />
           </Grid>
 
-          <Box 
-           sx={{
-              display: "grid",
-              gridTemplateColumns: "repeat(5, 1fr)",
-              gap: 1,
-              gridTemplateRows: "auto",
-              gridTemplateAreas: `"order order trade trade holding"
-              "credit stock ipo sidebar holding"`
-            }}
-            container spacing={3}
-          >
-
-          <Box item  sx={{gridArea: "order"}} md={6} lg={2} >
+          <Grid item  sx={12} md={6} lg={4.5} >
             <AppOrder />
-          </Box>
+          </Grid>
 
-          <Box item sx={{gridArea: "trade"}} md={6} lg={2}>
+          <Grid item sx={12} md={6} lg={4.5}>
             <AppTrade />
-          </Box>
+          </Grid>
 
-          <Box item xs={{gridArea: "holding"}} md={6} lg={3}>
+          <Grid item xs={12} md={6} lg={3}>
             <AppHolding />
-          </Box>
+          </Grid>
 
-          <Box item xs={{gridArea: "credit"}} sm={6} md={2.7}>
+          <Grid item xs={12} sm={6} md={3}>
             <AppCredit />
-          </Box>
+          </Grid>
 
-          <Box item xs={{gridArea: "stock"}} sm={6} md={2.7}>
+          <Grid item xs={12} sm={6} md={3}>
             <AppStock />
-          </Box>
+          </Grid>
 
-          <Box item xs={{gridArea: "ipo"}} sm={6} md={2.7}>
+          <Grid item xs={12} sm={6} md={3}>
             <AppIPO />
-          </Box>
+          </Grid>
           
-          </Box>
 
           {/* <Grid item xs={12} md={6} lg={8}>
             <AppWebsiteVisits />
