@@ -1,6 +1,6 @@
 import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import React from 'react';
 import { Link } from 'react-router-dom';
 // material
@@ -103,7 +103,9 @@ export default function User() {
 
   const isUserNotFound = filteredUsers.length === 0;
 
+
   return (
+
     <Page title="Customer List">
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
@@ -147,8 +149,9 @@ export default function User() {
                           selected={isItemSelected}
                           aria-checked={isItemSelected}
                           alignItems= "center"
+                          style={{ textDecoration: 'none' }}
                         >
-                          <TableCell component="th" scope="row" padding="normal">
+                          <TableCell component="th" scope="row" padding="normal" >
                             <Stack direction="row" alignItems="center" spacing={2}>
                               <Avatar alt={icon} src={avatarUrl} />
                               <Typography variant="subtitle2" noWrap>
