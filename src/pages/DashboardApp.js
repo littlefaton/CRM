@@ -1,10 +1,8 @@
 // material
-import { Box, Grid, Container, Typography, Avatar, Stack } from '@material-ui/core';
-import { Contacts } from '@material-ui/icons';
+import { Grid, Container, Typography, Avatar, Stack } from '@material-ui/core';
 // components
 import Page from '../components/Page';
 import {
-  AppTasks,
   AppFinancialInfo,
   AppCashMove,
   AppCash,
@@ -36,7 +34,7 @@ export default function DashboardApp() {
         <Grid container spacing={3}>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppClientInfo />
+            <AppClientInfo />             
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
@@ -51,62 +49,46 @@ export default function DashboardApp() {
             <AppCashMove />
           </Grid>
 
-          <Grid item  sx={12} md={6} lg={4.5} >
-            <AppOrder />
+        <Grid container wrap="nowrap" spacing={3}>
+
+          <Grid container spacing={3} paddingLeft={9}>
+
+            <Grid container spacing={3} alignItems="flex-end">
+
+              <Grid item  sx={12} md={6} lg={6}>
+                <AppOrder />
+              </Grid>
+
+              <Grid item sx={12} md={6} lg={6}>
+                <AppTrade />
+              </Grid>
+              
+            </Grid> 
+
+            <Grid container spacing={3} alignItems="center">
+
+              <Grid item xs={12} sm={6} md={4}>
+                <AppCredit />
+              </Grid>
+
+              <Grid item xs={12} sm={6} md={4}>
+                <AppStock />
+              </Grid>
+
+              <Grid item xs={12} sm={6} md={4}>
+                <AppIPO />
+              </Grid>
+
+            </Grid>
+
           </Grid>
 
-          <Grid item sx={12} md={6} lg={4.5}>
-            <AppTrade />
+            <Grid item xs={12} md={6} lg={3.8}>
+              <AppHolding />
+            </Grid>
+
           </Grid>
 
-          <Grid item xs={12} md={6} lg={3}>
-            <AppHolding />
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={3}>
-            <AppCredit />
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={3}>
-            <AppStock />
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={3}>
-            <AppIPO />
-          </Grid>
-          
-
-          {/* <Grid item xs={12} md={6} lg={8}>
-            <AppWebsiteVisits />
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={4}>
-            <AppCurrentVisits />
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={8}>
-            <AppConversionRates />
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={4}>
-            <AppCurrentSubject />
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={8}>
-            <AppNewsUpdate />
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={4}>
-            <AppOrderTimeline />
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={4}>
-            <AppTrafficBySite />
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={8}>
-            <AppTasks />
-          </Grid> */}
         </Grid>
       </Container>
     </Page>
