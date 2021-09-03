@@ -10,6 +10,8 @@ import { fNumber } from '../../../utils/formatNumber';
 import { BaseOptionChart } from '../../charts';
 //mocks
 import chartData from 'src/_mocks_/AppCash.json';
+//react-router
+import { Link } from 'react-router-dom';
 
 // ----------------------------------------------------------------------
 
@@ -70,7 +72,13 @@ export default function AppCash() {
     <Card>
       <Stack paddingTop={2} direction="row" spacing={2}>
         <Typography variant="h5" align="left" paddingLeft={2}>Cash</Typography>
-        <Button color="info" endIcon={<ArrowRightIcon />}>View More</Button>
+        <Button 
+        component={Link} 
+        to={`/dashboard/cash`} 
+        color="info" 
+        endIcon={<ArrowRightIcon />}>
+        View More
+        </Button>
       </Stack>
       <ChartWrapperStyle dir="ltr">
         <ReactApexChart type="pie" series={CHART_DATA} options={chartOptions} height={220}/>
