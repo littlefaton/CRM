@@ -1,9 +1,10 @@
 import { merge } from 'lodash';
 import ReactApexChart from 'react-apexcharts';
 // material
+import { makeStyles } from '@material-ui/styles';
 import { useTheme, styled } from '@material-ui/core/styles';
-import { Card, Button, Stack, Typography, Container } from '@material-ui/core';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import { Card, Grid, Stack, Typography, Container } from '@material-ui/core';
+import CardContent from '@material-ui/core/CardContent';
 // utils
 import { fNumber } from '../utils/formatNumber';
 //
@@ -39,10 +40,29 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 //   [{hkd}, {usd}, {others}]
 // ))}
 
+const useStyles = makeStyles({
+  root: {
+    minWidth: 275,
+  },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+});
+
 const CHART_DATA = [347138, 974792, 47192];
 
 export default function Cash() {
   const theme = useTheme();
+  const classes = useStyles();
+  const bull = <span className={classes.bullet}>•</span>;
 
   const chartOptions = merge(BaseOptionChart(), {
     colors: [
@@ -70,18 +90,34 @@ export default function Cash() {
 
   return (
     <Page title="Cash">
-        <Container>
+      <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
             Cash
           </Typography>
         </Stack>
 
-      <ChartWrapperStyle dir="ltr">
-        <ReactApexChart type="pie" series={CHART_DATA} options={chartOptions} height={350}/>
-      </ChartWrapperStyle>
+        <ChartWrapperStyle dir="ltr">
+          <ReactApexChart type="pie" series={CHART_DATA} options={chartOptions} height={350}/>
+        </ChartWrapperStyle>
 
-
+      <Grid xs={12} lg={4}>
+        <Card className={classes.root}>
+      <CardContent>
+        <Typography className={classes.title} color="error" gutterBottom> 
+          HKD
+        </Typography>
+        <Typography variant="h3" component="h2" color="error" py={3}>
+        34,7138
+        </Typography>
+        <Typography variant="body2" component="p">
+          well meaning and kindly.
+          <br />
+          {'"a benevolent smile"'}
+        </Typography>
+      </CardContent>
+    </Card>
+    </Grid>
 
     </Container>
     </Page>
