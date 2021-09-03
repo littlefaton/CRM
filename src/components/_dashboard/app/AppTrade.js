@@ -29,7 +29,7 @@ const RootStyle = styled(Card)(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function AppCashMove() {
+export default function AppTrade() {
   return (
     <RootStyle>
       <Stack direction="row" spacing={2}>
@@ -40,7 +40,7 @@ export default function AppCashMove() {
         <TableHead>
           <TableRow>
             <TableCell>Market</TableCell>
-            <TableCell align="right">Stock Number</TableCell>
+            <TableCell align="right">Stock No.</TableCell>
             <TableCell align="right">Buy/Sell</TableCell>
             <TableCell align="right">Amount</TableCell>
           </TableRow>
