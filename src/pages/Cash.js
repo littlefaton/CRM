@@ -5,6 +5,8 @@ import { makeStyles } from '@material-ui/styles';
 import { useTheme, styled } from '@material-ui/core/styles';
 import { Card, Grid, Stack, Typography, Container } from '@material-ui/core';
 import CardContent from '@material-ui/core/CardContent';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 // utils
 import { fNumber } from '../utils/formatNumber';
 //
@@ -101,22 +103,66 @@ export default function Cash() {
           <ReactApexChart type="pie" series={CHART_DATA} options={chartOptions} height={350}/>
         </ChartWrapperStyle>
 
-      <Grid xs={12} lg={4}>
-        <Card className={classes.root}>
+<Grid container spacing={3}>
+      <Grid item xs={12} lg={4}>
+        <Card className={classes.root} style={{backgroundColor: "lightpink"}}>
       <CardContent>
-        <Typography className={classes.title} color="error" gutterBottom> 
+        <Typography className={classes.title} gutterBottom color="white"> 
           HKD
         </Typography>
-        <Typography variant="h3" component="h2" color="error" py={3}>
+        <Typography variant="h3" component="h2" py={3}>
         34,7138
         </Typography>
-        <Typography variant="body2" component="p">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
+        <Stack direction="row">
+          <ArrowUpwardIcon color="primary" />
+        <Typography variant="body2" component="p" color="primary">
+          5%
         </Typography>
+        </Stack>
       </CardContent>
     </Card>
+    </Grid>
+
+
+    <Grid item xs={12} lg={4}>
+        <Card className={classes.root} style={{backgroundColor: "lightskyblue"}}>
+      <CardContent>
+        <Typography className={classes.title} gutterBottom color="white"> 
+          USD
+        </Typography>
+        <Typography variant="h3" component="h2" py={3}>
+        974,792
+        </Typography>
+        <Stack direction="row">
+          <ArrowUpwardIcon color="primary" />
+        <Typography variant="body2" component="p" color="primary">
+          0.2%
+        </Typography>
+        </Stack>
+      </CardContent>
+    </Card>
+    </Grid>
+
+
+    <Grid item xs={12} lg={4}>
+        <Card className={classes.root} style={{backgroundColor: "gold"}}>
+      <CardContent>
+        <Typography className={classes.title} gutterBottom color="white"> 
+          Others
+        </Typography>
+        <Typography variant="h3" component="h2" py={3}>
+        47,192
+        </Typography>
+        <Stack direction="row">
+          <ArrowDownwardIcon color="error" />
+        <Typography variant="body2" component="p" color="error">
+          10%
+        </Typography>
+        </Stack>
+      </CardContent>
+    </Card>
+    </Grid>
+
     </Grid>
 
     </Container>
