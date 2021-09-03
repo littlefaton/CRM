@@ -8,6 +8,8 @@ import { fNumber } from '../../../utils/formatNumber';
 //
 import { BaseOptionChart } from '../../charts';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+//react-router
+import { Link } from 'react-router-dom';
 
 // ----------------------------------------------------------------------
 
@@ -66,7 +68,11 @@ export default function AppCurrentVisits() {
     <Card>
       <Stack paddingTop={2} direction="row" spacing={2}>
         <Typography variant="h5" align="left" paddingLeft={2}>Customer Holding</Typography>
-        <Button color="info" endIcon={<ArrowRightIcon />}>View More</Button>
+        <Button 
+        component={Link} 
+        to={`/dashboard/customerHolding`} 
+        color="info" 
+        endIcon={<ArrowRightIcon />}>View More</Button>
       </Stack>
       <ChartWrapperStyle dir="ltr">
         <ReactApexChart type="pie" series={CHART_DATA} options={chartOptions} height={280} />
