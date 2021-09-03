@@ -55,7 +55,7 @@ export const menu = [
         },
         {
             title: "Customer Holding",
-            to: "/dashboard",
+            to: "/dashboard/customerHolding",
         },
     ]
   },

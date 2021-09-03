@@ -9,6 +9,7 @@ import DashboardApp from './pages/DashboardApp';
 import User from './pages/User';
 import NotFound from './pages/Page404';
 import Cash from './pages/Cash';
+import CustomerHolding from './pages/CustomerHolding';
 
 // ----------------------------------------------------------------------
 
@@ -22,7 +23,8 @@ export default function Router() {
         { path: 'app', element: <DashboardApp /> },
         { path: 'user', element: <User /> },
         { path: 'app/:id', element: <DashboardApp /> },
-        { path: 'cash', element: <Cash /> }
+        { path: 'cash', element: <Cash /> },
+        { path: 'customerHolding', element: <CustomerHolding /> }
       ]
     },
     {
