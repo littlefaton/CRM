@@ -4,16 +4,19 @@ import ReactApexChart from 'react-apexcharts';
 import { makeStyles } from '@material-ui/styles';
 import { useTheme, styled } from '@material-ui/core/styles';
 import { Stack, Typography, Container } from '@material-ui/core';
+import MaterialTable from "material-table";
 // utils
 import { fNumber } from '../utils/formatNumber';
 //
 import { BaseOptionChart } from '../components/charts';
 import Page from '../components/Page';
+//mocks
+import HOLDINGDATA from 'src/_mocks_/holdingData.json'
 
 // ----------------------------------------------------------------------
 
 const CHART_HEIGHT = 400;
-const LEGEND_HEIGHT = 67;
+const LEGEND_HEIGHT = 90;
 
 const ChartWrapperStyle = styled('div')(({ theme }) => ({
   height: CHART_HEIGHT,
@@ -26,16 +29,12 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
     height: LEGEND_HEIGHT,
     alignContent: 'center',
     position: 'relative !important',
-    //borderTop: `solid 1px ${theme.palette.divider}`,
-    //top: `calc(${CHART_HEIGHT - LEGEND_HEIGHT}px) !important`
     top: `calc(${(CHART_HEIGHT - LEGEND_HEIGHT)/3}px) !important`
   }
 }));
 
 // ----------------------------------------------------------------------
-// {chartData.map((array) => (
-//   [{hkd}, {usd}, {others}]
-// ))}
+
 
 const useStyles = makeStyles({
   root: {
@@ -54,7 +53,7 @@ const useStyles = makeStyles({
   },
 });
 
-const CHART_DATA = [347138, 974792, 47192];
+const CHART_DATA = [4344, 5435, 1443, 4443];
 
 export default function Cash() {
   const theme = useTheme();
@@ -66,8 +65,9 @@ export default function Cash() {
       theme.palette.error.main,
       theme.palette.info.main,
       theme.palette.warning.main,
+      theme.palette.primary.main,
     ],
-    labels: ['HKD', 'USD', 'Others'],
+    labels: ['HKG', 'USA', 'SZA', 'Others'],
     stroke: { colors: [theme.palette.background.paper] },
     legend: { floating: true, horizontalAlign: 'center', position: 'left' },
     dataLabels: { enabled: true, dropShadow: { enabled: false } },
@@ -86,17 +86,39 @@ export default function Cash() {
   });
 
   return (
-    <Page title="Cash">
+    <Page title="Customer Holding">
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            Cash
+            Customer Holding
           </Typography>
         </Stack>
 
         <ChartWrapperStyle dir="ltr">
           <ReactApexChart type="pie" series={CHART_DATA} options={chartOptions} height={350}/>
         </ChartWrapperStyle>
+
+        <MaterialTable
+      title="Basic Filtering Preview"
+      columns={[
+        { title: "Market", 
+        field: "market", 
+        lookup: { 34: "İstanbul", 63: "Şanlıurfa"},
+        },
+        { title: "Instrument Code", field: "code" },
+        { title: "Instrument Name", field: "name" },
+        { title: "Instrument Chinese Name", field: "chinName" },
+        { title: "Cost", field: "cost" },
+        { title: "Quantity", field: "quantity", type: "numeric" },
+        { title: "Market Price", field: "price" }
+      ]}
+      data={HOLDINGDATA}
+      options={{
+        filtering: true
+      }}
+    />
+        
+
     </Container>
     </Page>
   );
