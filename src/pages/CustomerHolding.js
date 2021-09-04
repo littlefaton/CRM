@@ -126,86 +126,43 @@ const Dropdown = ({id, value, onChange, label, options}) => {
   );
 };
 
-const categories = {
-  iceCream: {
-    name: "ice cream",
-    class: "blue"
-  },
-  doughnut: {
-    name: "doughnut",
-    class: "pink"
-  },
-  cake: {
-    name: "cake",
-    class: "green"
-  },
-  cookie: {
-    name: "cookie",
-    class: "purple"
-  }
-};
-
-function createData(name, calories, fat, carbs, protein, category, headers) {
-  return {name, calories, fat, carbs, protein, category, headers};
+function createData(market, code, name, chinName, cost, quantity, price, headers) {
+  return {market, code, name, chinName, cost, quantity, price, headers};
 }
 
 const rows = [
   createData(
-    {label: "Name"},
-    {label: "Calories", numeric: true},
-    {label: "Fat (g)", numeric: true},
-    {label: "Carbs (g)", numeric: true},
-    {label: "Protein (g)", numeric: true},
-    {label: "Category"},
+    {label: "Market"},
+    {label: "Instrument Code"},
+    {label: "Instrument Name"},
+    {label: "Instrument Chinese Name"},
+    {label: "Cost"},
+    {label: "Quantity", numeric: true},
+    {label: "Price"},
     true
   ),
-  createData("Frozen yogurt", 159, 6.0, 24, 4.0, categories.iceCream),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3, categories.iceCream),
-  createData("Eclair", 262, 16.0, 24, 6.0, categories.doughnut),
-  createData("Cupcake", 305, 3.7, 67, 4.3, categories.cake),
-  createData("Gingerbread", 356, 16.0, 49, 3.9, categories.cookie)
+
 ];
 
 const tupleEquals = (a, b) => a[0] === b[0] && a[1] === b[1];
 
 const dataRows = rows.filter((r) => r.headers !== true);
 
-const categoryOptions = Array.from(
-  new Set(dataRows.map((r) => r.category.name))
+const marketOptions = Array.from(
+  new Set(dataRows.map((r) => r.market.name))
 ).map((c) => ({label: c, value: c}));
 
-const maxCalories = getMax(dataRows, "calories");
-const minCalories = getMin(dataRows, "calories");
-const maxCarbs = getMax(dataRows, "carbs");
-const minCarbs = getMin(dataRows, "carbs");
-const maxFat = getMax(dataRows, "fat");
-const minFat = getMin(dataRows, "fat");
-const maxProtein = getMax(dataRows, "protein");
-const minProtein = getMin(dataRows, "protein");
+const maxQuantity = getMax(dataRows, "quantity");
+const minQuantity = getMin(dataRows, "quantity");
 
 const initialName = "";
-const initialCalories = [minCalories, maxCalories];
-const initialFat = [minFat, maxFat];
-const initialCarbs = [minCarbs, maxCarbs];
-const initialProtein = [minProtein, maxProtein];
+const initialQuantity = [minQuantity, maxQuantity];
 
 // Chart ----------------------------------------------------
 
 const useStyles = makeStyles({
   table: {
     minWidth: 650
-  },
-  blue: {
-    background: "#caeff7"
-  },
-  pink: {
-    background: "#fce0e7"
-  },
-  green: {
-    background: "#d9fce4"
-  },
-  purple: {
-    background: "#f3edff"
   },
   root: {
     minWidth: 275,
@@ -233,11 +190,8 @@ export default function Cash() {
   const [showFilters, setShowFilters] = useState(false);
 
   const [filterName, setFilterName] = useState(initialName);
-  const [filterCategories, setFilterCategories] = useState([]);
-  const [filterCalories, setFilterCalories] = useState(initialCalories);
-  const [filterFat, setFilterFat] = useState(initialFat);
-  const [filterCarbs, setFilterCarbs] = useState(initialCarbs);
-  const [filterProtein, setFilterProtein] = useState(initialProtein);
+  const [filterMarket, setFilterMarket] = useState([]);
+  const [filterQuantity, setFilterQuantity] = useState(initialQuantity);
 
   const [appliedFilters, setAppliedFilters] = useState([]);
 
@@ -257,11 +211,8 @@ export default function Cash() {
     setAppliedFilters([]);
     setData(rows);
     setFilterName(initialName);
-    setFilterCategories([]);
-    setFilterCalories(initialCalories);
-    setFilterFat(initialFat);
-    setFilterCarbs(initialCarbs);
-    setFilterProtein(initialProtein);
+    setFilterMarket([]);
+    setFilterQuantity(initialQuantity);
   };
 
   useEffect(() => {
@@ -282,61 +233,29 @@ export default function Cash() {
       })
       .filter((r) => {
         if (r.headers) return true;
-        if (filterCategories.length > 0) {
-          addAppliedFilter("category");
-          return filterCategories.includes(r.category.name);
+        if (filterMarket.length > 0) {
+          addAppliedFilter("market");
+          return filterMarket.includes(r.market.name);
         }
-        removeAppliedFilter("category");
+        removeAppliedFilter("market");
         return true;
       })
       .filter((r) => {
         if (r.headers) return true;
-        if (!tupleEquals(initialCalories, filterCalories)) {
-          addAppliedFilter("calories");
-          const [min, max] = filterCalories;
-          return r.calories >= min && r.calories <= max;
+        if (!tupleEquals(initialQuantity, filterQuantity)) {
+          addAppliedFilter("quantity");
+          const [min, max] = filterQuantity;
+          return r.quantity >= min && r.quantity <= max;
         }
-        removeAppliedFilter("calories");
+        removeAppliedFilter("quantity");
         return true;
       })
-      .filter((r) => {
-        if (r.headers) return true;
-        if (!tupleEquals(initialFat, filterFat)) {
-          addAppliedFilter("fat");
-          const [min, max] = filterFat;
-          return r.fat >= min && r.fat <= max;
-        }
-        removeAppliedFilter("fat");
-        return true;
-      })
-      .filter((r) => {
-        if (r.headers) return true;
-        if (!tupleEquals(initialCarbs, filterCarbs)) {
-          addAppliedFilter("carbs");
-          const [min, max] = filterCarbs;
-          return r.carbs >= min && r.carbs <= max;
-        }
-        removeAppliedFilter("carbs");
-        return true;
-      })
-      .filter((r) => {
-        if (r.headers) return true;
-        if (!tupleEquals(initialProtein, filterProtein)) {
-          addAppliedFilter("protein");
-          const [min, max] = filterProtein;
-          return r.protein >= min && r.protein <= max;
-        }
-        removeAppliedFilter("protein");
-        return true;
-      });
+      
     setData(updatedRows);
   }, [
-    filterCalories,
-    filterCategories,
-    filterCarbs,
-    filterFat,
     filterName,
-    filterProtein
+    filterMarket,
+    filterQuantity,
   ]);
 
 
@@ -411,65 +330,33 @@ export default function Cash() {
                     <TextField
                       value={filterName}
                       onChange={(e) => setFilterName(e.target.value)}
-                      label="Name"
+                      label="Instrument Name"
                       variant="filled"
                       fullWidth
                     />
                   </Grid>
                   <Grid item xs={12} sm={6} lg={3}>
                     <Dropdown
-                      id="category"
-                      value={filterCategories}
-                      onChange={(e) => setFilterCategories(e.target.value)}
-                      label="Categories"
-                      options={categoryOptions}
+                      id="market"
+                      value={filterMarket}
+                      onChange={(e) => setFilterMarket(e.target.value)}
+                      label="Market"
+                      options={marketOptions}
                     />
                   </Grid>
                 </Grid>
                 <Grid item xs={12} sm={6} lg={3}>
                   <Range
-                    label="Calories"
-                    value={filterCalories}
-                    setter={setFilterCalories}
-                    field="calories"
-                    valueLabelFormatter={(v) => `${v} calories`}
-                    max={maxCalories}
-                    min={minCalories}
+                    label="Quantity"
+                    value={filterQuantity}
+                    setter={setFilterQuantity}
+                    field="quantity"
+                    valueLabelFormatter={(v) => `${v} quantity`}
+                    max={maxQuantity}
+                    min={minQuantity}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6} lg={3}>
-                  <Range
-                    label="Fat"
-                    value={filterFat}
-                    setter={setFilterFat}
-                    field="fat"
-                    valueLabelFormatter={(v) => `${v} fat`}
-                    max={maxFat}
-                    min={minFat}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6} lg={3}>
-                  <Range
-                    label="Carbs"
-                    value={filterCarbs}
-                    setter={setFilterCarbs}
-                    field="carbs"
-                    valueLabelFormatter={(v) => `${v} carbs`}
-                    max={maxCarbs}
-                    min={minCarbs}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6} lg={3}>
-                  <Range
-                    label="Protein"
-                    value={filterProtein}
-                    setter={setFilterProtein}
-                    field="protein"
-                    valueLabelFormatter={(v) => `${v} protein`}
-                    max={maxProtein}
-                    min={minProtein}
-                  />
-                </Grid>
+                
               </Grid>
             </CardContent>
             <CardActions>
