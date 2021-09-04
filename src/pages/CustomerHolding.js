@@ -126,6 +126,21 @@ const Dropdown = ({id, value, onChange, label, options}) => {
   );
 };
 
+// const market = {
+//   HKG: {
+//     name: "HKG",
+//   },
+//   USA: {
+//     name: "USA",
+//   },
+//   SHA: {
+//     name: "SHA",
+//   },
+//   SZA: {
+//     name: "SZA",
+//   }
+// };
+
 function createData(market, code, name, chinName, cost, quantity, price, headers) {
   return {market, code, name, chinName, cost, quantity, price, headers};
 }
@@ -141,6 +156,10 @@ const rows = [
     {label: "Price"},
     true
   ),
+
+  createData("HKG", "5.HK", "Leanne Graham", "羅熱門業深", "HK$3.88", 234432, "HK$3.02-4.39")
+  //createData(HOLDINGDATA.market, HOLDINGDATA.code, HOLDINGDATA.name, HOLDINGDATA.chinName, HOLDINGDATA.cost, HOLDINGDATA.quantity, HOLDINGDATA.price)
+
 
 ];
 
