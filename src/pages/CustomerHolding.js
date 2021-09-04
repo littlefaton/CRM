@@ -4,7 +4,6 @@ import ReactApexChart from 'react-apexcharts';
 import { makeStyles } from '@material-ui/styles';
 import { useTheme, styled } from '@material-ui/core/styles';
 import { Stack, Typography, Container } from '@material-ui/core';
-import MaterialTable from "material-table";
 // utils
 import { fNumber } from '../utils/formatNumber';
 //
@@ -98,25 +97,6 @@ export default function Cash() {
           <ReactApexChart type="pie" series={CHART_DATA} options={chartOptions} height={350}/>
         </ChartWrapperStyle>
 
-        <MaterialTable
-      title="Basic Filtering Preview"
-      columns={[
-        { title: "Market", 
-        field: "market", 
-        lookup: { 34: "İstanbul", 63: "Şanlıurfa"},
-        },
-        { title: "Instrument Code", field: "code" },
-        { title: "Instrument Name", field: "name" },
-        { title: "Instrument Chinese Name", field: "chinName" },
-        { title: "Cost", field: "cost" },
-        { title: "Quantity", field: "quantity", type: "numeric" },
-        { title: "Market Price", field: "price" }
-      ]}
-      data={HOLDINGDATA}
-      options={{
-        filtering: true
-      }}
-    />
         
 
     </Container>
