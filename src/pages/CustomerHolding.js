@@ -37,6 +37,19 @@ import { UserListHead, UserListToolbar } from '../components/_dashboard/user';
 //
 import USERLIST from '../_mocks_/user.json';
 
+//-----------------------------------------------------------------------
+
+import clsx from 'clsx';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import ListItemText from '@material-ui/core/ListItemText';
+import Select from '@material-ui/core/Select';
+import Checkbox from '@material-ui/core/Checkbox';
+import Chip from '@material-ui/core/Chip';
+
+
 // ----------------------------------------------------------------------
 
 const CHART_HEIGHT = 400;
@@ -59,8 +72,15 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+    maxWidth: 300,
+  },
+  noLabel: {
+    marginTop: theme.spacing(3),
+  },
   root: {
     minWidth: 275,
   },
@@ -75,11 +95,43 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
-});
+}));
 
 const CHART_DATA = [4344, 5435, 1443, 4443];
 
-//----------------------------------------------------------------------
+// filter ----------------------------------------------------------------------
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+
+const names = [
+  'Oliver Hansen',
+  'Van Henry',
+  'April Tucker',
+  'Ralph Hubbard',
+  'Omar Alexander',
+  'Carlos Abbott',
+  'Miriam Wagner',
+  'Bradley Wilkerson',
+  'Virginia Andrews',
+  'Kelly Snyder',
+];
+
+function getStyles(name, personName, theme) {
+  return {
+    fontWeight:
+      personName.indexOf(name) === -1
+        ? theme.typography.fontWeightRegular
+        : theme.typography.fontWeightMedium,
+  };
+}
 
 // ----------------------------------------------------------------------
 
@@ -125,6 +177,23 @@ function applySortFilter(array, comparator, query) {
 }
 
 export default function CustomerHolding() {
+
+  const [personName, setPersonName] = React.useState([]);
+
+  const handleChange = (event) => {
+    setPersonName(event.target.value);
+  };
+
+  const handleChangeMultiple = (event) => {
+    const { options } = event.target;
+    const value = [];
+    for (let i = 0, l = options.length; i < l; i += 1) {
+      if (options[i].selected) {
+        value.push(options[i].value);
+      }
+    }
+    setPersonName(value);
+  };
 
   const [page, setPage] = useState(0);
   const [order, setOrder] = useState('asc');
@@ -203,11 +272,36 @@ export default function CustomerHolding() {
         </ChartWrapperStyle>
 
         <Card>
-          <UserListToolbar
-            numSelected={selected.length}
-            filterName={filterName}
-            onFilterName={handleFilterByName}
-          />
+
+          <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+            <UserListToolbar
+              numSelected={selected.length}
+              filterName={filterName}
+              onFilterName={handleFilterByName}
+            />
+
+            <FormControl className={classes.formControl}>
+              <InputLabel id="demo-mutiple-checkbox-label">Tag</InputLabel>
+              <Select
+                labelId="demo-mutiple-checkbox-label"
+                id="demo-mutiple-checkbox"
+                multiple
+                value={personName}
+                onChange={handleChange}
+                input={<Input />}
+                renderValue={(selected) => selected.join(', ')}
+                MenuProps={MenuProps}
+              >
+                {names.map((name) => (
+                  <MenuItem key={name} value={name}>
+                    <Checkbox checked={personName.indexOf(name) > -1} />
+                    <ListItemText primary={name} />
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+          </Stack>
 
           <Scrollbar>
             <TableContainer sx={{ minWidth: 800 }}>
