@@ -107,7 +107,7 @@ export default function Cash() {
       <Grid item xs={12} lg={4}>
         <Card className={classes.root} style={{backgroundColor: "lightpink"}}>
       <CardContent>
-        <Typography className={classes.title} gutterBottom color="white"> 
+        <Typography className={classes.title} gutterBottom > 
           HKD
         </Typography>
         <Typography variant="h3" component="h2" py={3}>
@@ -127,7 +127,7 @@ export default function Cash() {
     <Grid item xs={12} lg={4}>
         <Card className={classes.root} style={{backgroundColor: "lightskyblue"}}>
       <CardContent>
-        <Typography className={classes.title} gutterBottom color="white"> 
+        <Typography className={classes.title} gutterBottom> 
           USD
         </Typography>
         <Typography variant="h3" component="h2" py={3}>
@@ -147,7 +147,7 @@ export default function Cash() {
     <Grid item xs={12} lg={4}>
         <Card className={classes.root} style={{backgroundColor: "gold"}}>
       <CardContent>
-        <Typography className={classes.title} gutterBottom color="white"> 
+        <Typography className={classes.title} gutterBottom> 
           Others
         </Typography>
         <Typography variant="h3" component="h2" py={3}>
