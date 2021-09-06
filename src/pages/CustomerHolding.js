@@ -12,31 +12,6 @@ import Page from '../components/Page';
 //mocks
 import HOLDINGDATA from 'src/_mocks_/holdingData.json'
 
-import React, {useEffect, useState} from "react";
-
-import Box from "@material-ui/core/Box";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardHeader from "@material-ui/core/CardHeader";
-import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid";
-import Slider from "@material-ui/core/Slider";
-import Chip from "@material-ui/core/Chip";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import MuiButton from "@material-ui/core/Button";
-
-import {Table} from "src/components/Table";
-
-import ArrowDropUp from "@material-ui/icons/ArrowDropUp";
-import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
-
-import {spacing} from "@material-ui/system";
-
-
 // ----------------------------------------------------------------------
 
 const CHART_HEIGHT = 400;
@@ -57,132 +32,10 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
   }
 }));
 
-// Table ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
 
-const Button = styled(MuiButton)(spacing);
-
-const getMax = (data, field) => {
-  return Math.max(...data.map((row) => row[field]));
-};
-
-const getMin = (data, field) => {
-  return Math.min(...data.map((row) => row[field]));
-};
-
-const Range = ({
-  value,
-  setter,
-  field,
-  onChange,
-  max,
-  min,
-  label,
-  valueLabelFormatter
-}) => (
-  <>
-    <Typography id={`${field}-range-slider`} gutterBottom>
-      {label}: {value[0]} - {value[1]}
-    </Typography>
-    <Slider
-      value={value}
-      onChange={(e, v) => {
-        setter(v);
-        if (onChange) onChange(e);
-      }}
-      valueLabelDisplay="auto"
-      aria-labelledby={`${field}-range-slider`}
-      max={max}
-      min={min}
-      getAriaValueText={valueLabelFormatter}
-    />
-  </>
-);
-
-const Dropdown = ({id, value, onChange, label, options}) => {
-  const forwardID = id ?? `${JSON.stringify(options)}-select`;
-  return (
-    <FormControl variant="filled" fullWidth>
-      <InputLabel id={`${forwardID}-label`}>{label}</InputLabel>
-      <Select
-        labelId={`${forwardID}-label`}
-        fullWidth
-        multiple
-        id={forwardID}
-        value={value}
-        onChange={onChange}
-        label={label}
-        variant="filled"
-      >
-        {options.map((option) => {
-          const {label: optionLabel, value} = option;
-          return (
-            <MenuItem key={value} value={value}>
-              {optionLabel}
-            </MenuItem>
-          );
-        })}
-      </Select>
-    </FormControl>
-  );
-};
-
-// const market = {
-//   HKG: {
-//     name: "HKG",
-//   },
-//   USA: {
-//     name: "USA",
-//   },
-//   SHA: {
-//     name: "SHA",
-//   },
-//   SZA: {
-//     name: "SZA",
-//   }
-// };
-
-function createData(market, code, name, chinName, cost, quantity, price, headers) {
-  return {market, code, name, chinName, cost, quantity, price, headers};
-}
-
-const rows = [
-  createData(
-    {label: "Market"},
-    {label: "Instrument Code"},
-    {label: "Instrument Name"},
-    {label: "Instrument Chinese Name"},
-    {label: "Cost"},
-    {label: "Quantity", numeric: true},
-    {label: "Price"},
-    true
-  ),
-
-  createData("HKG", "5.HK", "Leanne Graham", "羅熱門業深", "HK$3.88", 234432, "HK$3.02-4.39")
-  //createData(HOLDINGDATA.market, HOLDINGDATA.code, HOLDINGDATA.name, HOLDINGDATA.chinName, HOLDINGDATA.cost, HOLDINGDATA.quantity, HOLDINGDATA.price)
-
-
-];
-
-const tupleEquals = (a, b) => a[0] === b[0] && a[1] === b[1];
-
-const dataRows = rows.filter((r) => r.headers !== true);
-
-const marketOptions = Array.from(
-  new Set(dataRows.map((r) => r.market.name))
-).map((c) => ({label: c, value: c}));
-
-const maxQuantity = getMax(dataRows, "quantity");
-const minQuantity = getMin(dataRows, "quantity");
-
-const initialName = "";
-const initialQuantity = [minQuantity, maxQuantity];
-
-// Chart ----------------------------------------------------
 
 const useStyles = makeStyles({
-  table: {
-    minWidth: 650
-  },
   root: {
     minWidth: 275,
   },
@@ -202,83 +55,8 @@ const useStyles = makeStyles({
 const CHART_DATA = [4344, 5435, 1443, 4443];
 
 export default function Cash() {
-
-  const classes = useStyles();
-  const [data, setData] = useState(rows);
-
-  const [showFilters, setShowFilters] = useState(false);
-
-  const [filterName, setFilterName] = useState(initialName);
-  const [filterMarket, setFilterMarket] = useState([]);
-  const [filterQuantity, setFilterQuantity] = useState(initialQuantity);
-
-  const [appliedFilters, setAppliedFilters] = useState([]);
-
-  const addAppliedFilter = (filter) =>
-    setAppliedFilters((current) => {
-      if (current.includes(filter)) return current;
-      return [...current, filter];
-    });
-
-  const removeAppliedFilter = (filter) =>
-    setAppliedFilters((current) => current.filter((e) => e !== filter));
-
-  const filtersCount = appliedFilters.length;
-
-  const toggleShowFilters = () => setShowFilters((s) => !s);
-  const resetFilters = () => {
-    setAppliedFilters([]);
-    setData(rows);
-    setFilterName(initialName);
-    setFilterMarket([]);
-    setFilterQuantity(initialQuantity);
-  };
-
-  useEffect(() => {
-    const updatedRows = rows
-      .filter((r) => {
-        if (r.headers) return true;
-        if (initialName !== filterName) {
-          addAppliedFilter("name");
-          try {
-            const filterNameRegEx = new RegExp(filterName, "gi");
-            return r.name.match(filterNameRegEx);
-          } catch {
-            return r.name.indexOf(filterName) !== -1;
-          }
-        }
-        removeAppliedFilter("name");
-        return true;
-      })
-      .filter((r) => {
-        if (r.headers) return true;
-        if (filterMarket.length > 0) {
-          addAppliedFilter("market");
-          return filterMarket.includes(r.market.name);
-        }
-        removeAppliedFilter("market");
-        return true;
-      })
-      .filter((r) => {
-        if (r.headers) return true;
-        if (!tupleEquals(initialQuantity, filterQuantity)) {
-          addAppliedFilter("quantity");
-          const [min, max] = filterQuantity;
-          return r.quantity >= min && r.quantity <= max;
-        }
-        removeAppliedFilter("quantity");
-        return true;
-      })
-      
-    setData(updatedRows);
-  }, [
-    filterName,
-    filterMarket,
-    filterQuantity,
-  ]);
-
-
   const theme = useTheme();
+  const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
 
   const chartOptions = merge(BaseOptionChart(), {
@@ -319,93 +97,7 @@ export default function Cash() {
           <ReactApexChart type="pie" series={CHART_DATA} options={chartOptions} height={350}/>
         </ChartWrapperStyle>
 
-      <Card>
-        <Box m={2}>
-      <Button
-        onClick={toggleShowFilters}
-        variant="contained"
-        disableElevation
-        endIcon={showFilters ? <ArrowDropUp /> : <ArrowDropDown />}
-      >
-        {showFilters ? "Hide filters" : "Filter"}
-        {filtersCount > 0 ? ` (${filtersCount})` : ""}
-      </Button>
-      {filtersCount > 0 && (
-        <Button ml={2} onClick={resetFilters}>
-          Reset filters
-        </Button>
-      )}
-      {showFilters && (
-        <Box py={1}>
-          <Card variant="outlined">
-            <CardHeader
-              titleTypographyProps={{variant: "h6"}}
-              title="Filter options"
-            />
-            <CardContent>
-              <Grid container spacing={4}>
-                <Grid item container spacing={4}>
-                  <Grid item xs={12} sm={6} lg={3}>
-                    <TextField
-                      value={filterName}
-                      onChange={(e) => setFilterName(e.target.value)}
-                      label="Instrument Name"
-                      variant="filled"
-                      fullWidth
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6} lg={3}>
-                    <Dropdown
-                      id="market"
-                      value={filterMarket}
-                      onChange={(e) => setFilterMarket(e.target.value)}
-                      label="Market"
-                      options={marketOptions}
-                    />
-                  </Grid>
-                </Grid>
-                <Grid item xs={12} sm={6} lg={3}>
-                  <Range
-                    label="Quantity"
-                    value={filterQuantity}
-                    setter={setFilterQuantity}
-                    field="quantity"
-                    valueLabelFormatter={(v) => `${v} quantity`}
-                    max={maxQuantity}
-                    min={minQuantity}
-                  />
-                </Grid>
-                
-              </Grid>
-            </CardContent>
-            <CardActions>
-              <Button onClick={resetFilters} size="small">
-                Reset
-              </Button>
-            </CardActions>
-          </Card>
-        </Box>
-      )}
-      <Table
-        data={data}
-        formatHeaderCells={(cell) => cell.label}
-        headerCellOptions={(cell) => ({
-          align: cell.numeric ? "right" : undefined
-        })}
-        formatDataCells={(cell) => {
-          if (typeof cell === "object") {
-            return <Chip className={classes[cell.class]} label={cell.name} />;
-          }
-          return cell;
-        }}
-        dataCellOptions={(cell) => {
-          return {
-            align: typeof cell === "number" ? "right" : undefined
-          };
-        }}
-      />
-    </Box>
-    </Card>
+        
 
     </Container>
     </Page>
