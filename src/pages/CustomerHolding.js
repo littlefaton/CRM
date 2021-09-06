@@ -111,23 +111,17 @@ const MenuProps = {
   },
 };
 
-const names = [
-  'Oliver Hansen',
-  'Van Henry',
-  'April Tucker',
-  'Ralph Hubbard',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
+const markets = [
+  'HKG',
+  'USA',
+  'SZA',
+  'Others',
 ];
 
-function getStyles(name, personName, theme) {
+function getStyles(name, marketName, theme) {
   return {
     fontWeight:
-      personName.indexOf(name) === -1
+      marketName.indexOf(name) === -1
         ? theme.typography.fontWeightRegular
         : theme.typography.fontWeightMedium,
   };
@@ -178,10 +172,10 @@ function applySortFilter(array, comparator, query) {
 
 export default function CustomerHolding() {
 
-  const [personName, setPersonName] = React.useState([]);
+  const [marketName, setMarketName] = React.useState([]);
 
   const handleChange = (event) => {
-    setPersonName(event.target.value);
+    setMarketName(event.target.value);
   };
 
   const handleChangeMultiple = (event) => {
@@ -192,7 +186,7 @@ export default function CustomerHolding() {
         value.push(options[i].value);
       }
     }
-    setPersonName(value);
+    setMarketName(value);
   };
 
   const [page, setPage] = useState(0);
@@ -225,8 +219,15 @@ export default function CustomerHolding() {
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - HOLDINGDATA.length) : 0;
 
   const filteredUsers = applySortFilter(HOLDINGDATA, getComparator(order, orderBy), filterName);
+  const filteredMarket = filteredUsers.filter(data => {
+    if (marketName.length >0) {
+      return marketName.indexOf(data.market) !== -1;
+    }else {
+      return true;
+    }
+  })
 
-  const isUserNotFound = filteredUsers.length === 0;
+  const isUserNotFound = filteredMarket.length === 0;
 
 
   const theme = useTheme();
@@ -281,20 +282,20 @@ export default function CustomerHolding() {
             />
 
             <FormControl className={classes.formControl}>
-              <InputLabel id="demo-mutiple-checkbox-label">Tag</InputLabel>
+              <InputLabel id="demo-mutiple-checkbox-label">Market</InputLabel>
               <Select
                 labelId="demo-mutiple-checkbox-label"
                 id="demo-mutiple-checkbox"
                 multiple
-                value={personName}
+                value={marketName}
                 onChange={handleChange}
                 input={<Input />}
                 renderValue={(selected) => selected.join(', ')}
                 MenuProps={MenuProps}
               >
-                {names.map((name) => (
+                {markets.map((name) => (
                   <MenuItem key={name} value={name}>
-                    <Checkbox checked={personName.indexOf(name) > -1} />
+                    <Checkbox checked={marketName.indexOf(name) > -1} />
                     <ListItemText primary={name} />
                   </MenuItem>
                 ))}
@@ -314,7 +315,7 @@ export default function CustomerHolding() {
                   onRequestSort={handleRequestSort}
                 />
                 <TableBody>
-                  {filteredUsers
+                  {filteredMarket
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row) => {
                       const { id, market, code, name, chinName, cost, quantity, price } = row;
